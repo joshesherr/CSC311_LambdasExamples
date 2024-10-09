@@ -3,6 +3,7 @@ package org.example;
 // Fig. 17.12: ArraysAndStreams2.java
 // Demonstrating lambdas and streams with an array of Strings.
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ArraysAndStreams2 {
@@ -32,6 +33,28 @@ public class ArraysAndStreams2 {
                .filter(s -> s.compareToIgnoreCase("n") < 0)
                .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                .collect(Collectors.toList()));
+
+
+      System.out.println();
+      Character[] vowels = {'a', 'e', 'i', 'o', 'u', 'y'};
+      List<Character> vowelList = Arrays.asList(vowels);
+      // strings that start with a vowel
+      System.out.printf("strings starting with a vowel: %s%n",
+              Arrays.stream(strings)
+                      .filter(s -> vowelList.contains((Character) s.toLowerCase().charAt(0)) )
+                      .collect(Collectors.toList()));
+
+      // strings together with comma
+      System.out.printf("strings together: %s%n",
+              Arrays.stream(strings)
+                    .collect(Collectors.joining (",")));
+
+      // strings that have more than 5 characters
+      System.out.printf("strings with more than 5 chars: %s%n",
+              Arrays.stream(strings)
+                      .filter(s -> s.length()>5)
+                      .collect(Collectors.toList()));
+
    }
 } 
 
